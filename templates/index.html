@@ -1,0 +1,62 @@
+<html>
+<body>
+<h1>ChatBox</h1>
+<form action="/" method="post">
+<input name="chat" placeholder="Chat away" type="text"></input><button>Submit</button>
+</form>
+<ul>
+ 
+{% if limit - 20 >= 0 %}
+    {% for n in range(lastpost - limit-1, lastpost-limit+20) %}
+        <li>{{ display[n] }}</li>
+    {% endfor %}
+{% endif %} 
+{% if limit - 20 < 0 %}
+
+    {% for t in range(lastpost-1-limit,lastpost,1 ) %}
+        <li>{{ display[t] }}</li>
+    {% endfor %}
+{% endif %} 
+
+
+</ul>
+
+<p>
+ 
+     
+{% if limit - 21 >= 20 %}
+        <a href="?nav={{ limit - 21 }}">
+        {{ limit - 41}} to {{ limit - 21}}
+{% endif %}  
+{% if limit - 21 <= 20 %}
+    {% if limit - 21 > 0  %}    
+        <a href="?nav={{ limit - 21 }}">
+        {{ 0 }} to {{ limit - 21 }} </a>    
+    {% endif %} 
+{% endif %} 
+        
+      
+        
+        </a> 
+     {% if limit - 21 < 0  %}    
+  < Currently viewing post  0 to {{ limit }} >    
+    {% endif %} 
+        {% if limit - 21 >= 0  %}    
+   < Currently viewing post  {{ limit - 20}} to {{ limit }} >
+
+    {% endif %} 
+
+{% if limit <= lastpost+1 %}
+You are at the end
+{% endif %}
+
+{% if limit + 20 <= lastpost+1 %}
+<a href="?nav={{ limit + 21 }}">{{ limit + 1 }} to {{ limit + 21}}</a> post
+{% endif %}
+
+</p>
+<p>Total post is {{ lastpost }} - limit (current select top of range) is {{ limit-1 }}</p>
+</body>
+
+
+</html>

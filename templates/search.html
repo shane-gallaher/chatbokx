@@ -1,0 +1,24 @@
+<html>
+<body>
+<h1>ChatBox Search</h1>
+<form action="/search" method="post">
+<input name="q" placeholder="search for something" type="text"></input><button>Submit</button>
+</form>
+<ul>
+ 
+
+{% if display|length > 0 %}
+    {% for t in range(display|length) %}
+        <li>{{ display[t] }}</li>
+    {% endfor %}
+{% endif %}
+
+
+
+</ul>
+
+
+</body>
+
+
+</html>
